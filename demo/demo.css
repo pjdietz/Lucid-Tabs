@@ -1,0 +1,85 @@
+pre {
+    margin: 10px;
+    border: 1px dashed #999;
+    padding: 10px;
+    background: #eee;
+}
+
+.tabs {
+    clear: left;
+    margin-top: 20px;
+    padding-bottom: 0;
+    border-bottom: 2px solid #ff9c00;
+}
+
+.tabs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tabs li {
+    display: inline;
+    margin-right: 5px; 
+}
+
+.tabs a {
+    padding: 3px 6px 2px 6px;
+    text-decoration: none;
+    color: #333;    
+    font-weight: bold;    
+}
+
+.tabs a:hover {
+    background: #ccc;
+    text-decoration: none;    
+}
+
+.tabs a.selected {
+    background: #ff9c00;
+    color: #fff;
+}
+
+.lucid-tab-example {
+    margin: 20px;
+}
+
+.tabbed-area {
+    width: 237px;
+    
+}
+
+.page-container {
+    position: relative;
+    width: 235px;
+    height: 200px;
+    border-right: 1px solid #ff9c00;
+    border-bottom: 1px solid #ff9c00;
+    border-left: 1px solid #ff9c00;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#futurama dt.selected,
+#futurama dt:hover {
+    color: #ff9c00;
+}
+
+#messages-container {
+    width: 400px;
+    margin: 20px;
+    border: 1px solid #999;
+    padding: 10px;
+}
+
+#messages-container p {
+    margin: 0;
+    padding: 0;
+    font-size: 80%;
+    
+}

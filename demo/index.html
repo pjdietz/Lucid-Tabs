@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Lucid Tabs Demo</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="demo.css" />
+<script src="jquery-1.7.2.min.js"></script>
+<script src="../jquery.tabs.js"></script>
+<script src="demo.js"></script>
+</head>
+<body>
+
+<h1>Lucid Tabs Demo</h1>
+
+<h2>Simple</h2>
+<p>This example uses the defaults. Working tabs with one like of JavaScript!
+<div id="cats" class="tabbed-area lucid-tab-example">
+    <div class="tabs">
+        <ul>
+            <li><a id="molly-tab" href="#molly-page">Molly</a></li>
+            <li><a id="rufus-tab" href="#rufus-page">Rufus</a></li>
+        </ul>
+    </div>
+    <div id="molly-page" class="page-container">
+       <img src="images/molly.jpg" width="235" height="200" alt="Molly" />
+    </div>
+    <div id="rufus-page" class="page-container">
+        <img src="images/rufus.jpg" width="235" height="200" alt="Rufus" />
+    </div>
+</div>
+<pre>$("#cats").tabs();</pre>
+
+<h2>Animation</h2>
+<p>This example adds custom animations for showing and hiding the tabs.</p>
+<div id="fancy-cats" class="tabbed-area lucid-tab-example">
+    <div class="tabs">
+        <ul>
+            <li><a href="#fancy-molly-page">Molly</a></li>
+            <li><a href="#fancy-rufus-page">Rufus</a></li>
+        </ul>
+    </div>
+    <div class="page-container">
+        <div id="fancy-molly-page" class="page">
+           <img src="images/molly.jpg" width="235" height="200" alt="Molly" />
+        </div>
+        <div id="fancy-rufus-page" class="page">
+            <img src="images/rufus.jpg" width="235" height="200" alt="Rufus" />
+        </div>
+    </div>
+</div>
+<pre>$("#fancy-cats").tabs({
+            
+    // Set the tab at index 1 to be displayed initially.
+    selected: 1,
+
+    // Animate the transitions.
+    showPage: function (elem) {
+        elem.css({
+            "z-index": 1
+        });
+        elem.fadeIn(1000);
+    },
+    hidePage: function (elem) {
+        elem.css({
+            "z-index": 0
+        });
+        elem.fadeOut(1000);
+    }
+                    
+});</pre>
+
+<h2>Definition List</h2>
+<p>You can also use Lucid Tabs to dress up a definiion list. To do this, supply your own functions for <code>locateTabs</code> and <code>locatePages</code>.</p>
+<p>This example also allow having no tabs selected, and even uses this as the default.</p>
+<p>Finally, this example binds some event handlers to add messages when tabs are selected and deselected.</p>
+<dl id="futurama" class="lucid-tab-example">
+<dt id="fry">Philip J. Fry</dt>
+<dd>
+<p>Fry is a dim-witted, immature, slovenly, yet good-hearted pizza delivery boy who falls into a cryogenic pod, causing it to activate and freeze him just after midnight on January 1, 2000. He re-awakens on New Year's Eve, 2999, and gets a job as a cargo delivery boy at Planet Express, a company owned by his only living relative, Professor Hubert J. Farnsworth. Fry's love for Leela is a recurring theme throughout the series.</p>
+</dd>
+<dt id="leela">Turanga Leela</dt>
+<dd>
+<p>Leela is the competent, one-eyed captain of the Planet Express Ship.[63] Abandoned as a baby, she grew up in the Cookieville Minimum Security Orphanarium believing herself to be an alien from another planet, but learns that she is actually a mutant from the sewers in the episode "Leela's Homeworld".[65] Prior to becoming the ship's captain, Leela worked as a career assignment officer at the cryogenics lab where she first met Fry. She is Fry's primary love interest. Her name is a reference to the Turangalîla-Symphonie by Olivier Messiaen.[66]</p>
+</dd>
+<dt id="bender">Bender Bending Rodríguez</dt>
+<dd>
+<p>Bender is a foul-mouthed, heavy-drinking, cigar-smoking, kleptomaniacal, misanthropic, egocentric, ill-tempered robot manufactured by Mom's Friendly Robot Company. He was originally programmed to bend girders for suicide booths, and is later designated as assistant sales manager and cook, despite lacking a sense of taste. He is Fry's best friend and roommate.</p>
+</dd>
+</dl><!-- #futurama -->
+<div id="messages-container">
+<label>Messages: </label>
+<div id="messages"></div>
+</div>
+<pre>$("#futurama").tabs({
+        
+    // Allow all pages to be hidden at once.
+    allowNone: true,
+    
+    // Allow more than one page showing at once.
+    allowMultiple: true,
+    
+    // No initial selection.
+    selected: false, 
+
+    // Tabs will be top-level definition terms.
+    locateTabs: function (elemTabSet) {
+        return elemTabSet.children("dt");
+    },
+    
+    // The DD following a DT will be its correspoding page.
+    locatePages: function (elemTab) {
+        return elemTab.next("dd");
+    } 
+    
+});
+
+// Bind some events for when a tab is selected or deselected.        
+$("#futurama > dt").on("selected.lucidtabs", function () {
+    $("#messages").append($("<p></p>").text("Hello, " + $(this).text() + "!"));
+});
+$("#futurama > dt").on("deselected.lucidtabs", function () {
+    $("#messages").append($("<p></p>").text("Goodbye, " + $(this).text() + "!"));
+});</pre>
+
+<h2>Multiple Pages</h2>
+<p>The selector you use in <code>locatePages</code> can match multiple elements. Im this example, each button (tab) points to the elements with the same value in the <code>data-type</code> attribute. Using this approach, you could use Lucid Tabs to make a map with landmarks you can toggle on and off.</p>
+<div id="letters" class="lucid-tab-example">
+<button data-type="a">A</button>
+<button data-type="b">B</button>
+<button data-type="c">C</button>
+<span data-type="a">A</span>
+<span data-type="b">B</span>
+<span data-type="c">C</span>
+<span data-type="a">A</span>
+<span data-type="b">B</span>
+<span data-type="c">C</span>
+<span data-type="a">A</span>
+<span data-type="b">B</span>
+<span data-type="c">C</span>
+<span data-type="a">A</span>
+<span data-type="b">B</span>
+<span data-type="c">C</span>
+</div><!-- #letters -->
+<pre>$("#letters").tabs({
+    
+    // Allow all pages to be hidden at once.
+    allowNone: true,
+    
+    // Allow more than one to be shown at once.
+    allowMultiple: true,
+    
+    // Initially show all pages.
+    selected: "*",
+    
+    // Tabs will be buttons with data-type attributes.
+    locateTabs: function (elemTabSet) {
+        return elemTabSet.find("button[data-type]");    
+    },
+    
+    // Pages will be spans with data-type attributes matching the tabs.
+    locatePages: function (elemTab, elemTabSet) {
+        var dt = elemTab.attr("data-type");
+        return elemTabSet.find("span[data-type=\"" + dt + "\"]");                
+    }
+    
+});</pre>
+</body>
+</html>
