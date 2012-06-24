@@ -1,55 +1,83 @@
-pre {
-    margin: 10px;
-    border: 1px dashed #999;
-    padding: 10px;
-    background: #eee;
+.intro {
+    width: 600px;
 }
+.example {
+    clear: left;
+    float: left;
+    width: 600px;
+    margin-top: 20px;    
+}
+.example h2 {
+    margin: 0;
+    padding: 0;
+    
+}
+.example .demo {
+    clear: left;
+    float: left;
+}
+.example .notes {
+    float: left;
+    margin-left: 20px;
+    width: 340px;
+}
+
+
+/* Tabs */
 
 .tabs {
     clear: left;
-    margin-top: 20px;
-    padding-bottom: 0;
-    border-bottom: 2px solid #ff9c00;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid #ff9c00; 
 }
 
 .tabs ul {
-    list-style: none;
+    float: left;
+    list-style: none; 
     margin: 0;
-    padding: 0;
+    padding: 0;   
 }
 
 .tabs li {
-    display: inline;
-    margin-right: 5px; 
+    position: relative; 
+    float: left;
+    margin: 0;
+    padding: 0 4px 0 0;
+    line-height: 22px;
+    font-weight: bold;  
 }
 
 .tabs a {
-    padding: 3px 6px 2px 6px;
-    text-decoration: none;
-    color: #333;    
-    font-weight: bold;    
+    display: block;
+    float: left;
+    height: 22px;
+    margin-top: 5px;
+    padding: 1px 6px 0 6px;
+    color: #000;
+    background: #eee;        
+    text-decoration: none; 
 }
 
-.tabs a:hover {
-    background: #ccc;
-    text-decoration: none;    
-}
-
-.tabs a.selected {
+.tabs a.selected,
+.tabs a.selected:hover {
+    float: left;
+    display: block;
+    margin-top: 5px;
+    padding: 1px 6px 0 6px;
     background: #ff9c00;
     color: #fff;
 }
 
-.lucid-tab-example {
-    margin: 20px;
+.tabs a:hover {
+    margin-top: 0;
+    padding-bottom: 5px;
+    background: #fff095;
+    color: #000;
+    text-decoration: none;
 }
 
-.tabbed-area {
-    width: 237px;
-    
-}
-
-.page-container {
+.pages {
     position: relative;
     width: 235px;
     height: 200px;
@@ -65,21 +93,150 @@ pre {
     z-index: 0;
 }
 
-#futurama dt.selected,
-#futurama dt:hover {
-    color: #ff9c00;
-}
 
-#messages-container {
-    width: 400px;
-    margin: 20px;
+/* Accordion */
+
+.accordion {
+    width: 235px;
+    margin: 10px;
     border: 1px solid #999;
-    padding: 10px;
 }
 
-#messages-container p {
+.accordion, 
+.accordion dt,
+.accordion dd,
+.accordion ul,
+.accordion li {
     margin: 0;
     padding: 0;
-    font-size: 80%;
-    
+    list-style: none;
 }
+
+.accordion dt,
+.accordion li {
+    border-top: 1px solid #ddd;
+}
+
+.accordion dt:first-child {
+    border-top: 0;
+}
+
+.accordion dt {
+    width: 225px;
+    padding: 5px;
+    background: #eee;
+    font-weight: bold;
+    color: black;
+}
+
+.accordion dt.selected {
+    background: #ff9c00;
+    color: white;
+}
+
+.accordion dt:hover {
+    background: #fff095;
+    cursor: pointer;
+    color: black;
+}
+
+.accordion ul li {
+    width: 215px;
+    padding: 5px 5px 5px 15px;
+    background: #fff;
+}
+
+
+
+/* Map */
+
+#map {
+    position: relative;
+    margin-top: 40px;
+    width: 600px;
+    height: 375px;
+}
+
+#map .legend {
+    position: absolute;
+    top: -40px;
+    left: 0;
+}
+
+#map img {
+    width: 100%;
+    height: 100%;
+}
+
+#map button {
+    background: #eee;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    border-left: 1px solid #eee;
+}
+
+#map button.selected {
+    background: #ccc;
+    border-top: 1px solid #999;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #999;
+}
+
+#map ul,
+#map ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#map .pin {
+    position: absolute;
+}
+
+#map .pin span {
+    position: absolute;
+    display: block;
+    top: -32px;
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+#map .pin label {
+    position: absolute;
+    top: 32px;
+    left: -8px;
+    width: 48px;
+    font-size: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+#map .orange span {
+    background-image: url(images/map-pin-orange.png);
+}
+
+#map .green span {
+    background-image: url(images/map-pin-green.png);
+}
+
+#map .blue span {
+    background-image: url(images/map-pin-blue.png);
+}
+
+#map #city-anchorage    { top: 89%; left: 13%; }
+#map #city-charleston   { top: 65%; left: 81%; }
+#map #city-cleveland    { top: 36%; left: 75%; }
+#map #city-fargo        { top: 20%; left: 49%; }
+#map #city-knoxville    { top: 56%; left: 73%; }
+#map #city-miami        { top: 88%; left: 83%; }
+#map #city-newyork      { top: 32%; left: 88%; }
+#map #city-ogden        { top: 37%; left: 23%; }
+#map #city-philadelphia { top: 38%; left: 86%; }
+#map #city-quahog       { top: 29%; left: 92%; }
+#map #city-seattle      { top: 06%; left: 11%; }

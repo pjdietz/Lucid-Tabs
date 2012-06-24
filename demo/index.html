@@ -11,158 +11,139 @@
 <body>
 
 <h1>Lucid Tabs Demo</h1>
-
-<h2>Simple</h2>
-<p>This example uses the defaults. Working tabs with one like of JavaScript!
-<div id="cats" class="tabbed-area lucid-tab-example">
-    <div class="tabs">
-        <ul>
-            <li><a id="molly-tab" href="#molly-page">Molly</a></li>
-            <li><a id="rufus-tab" href="#rufus-page">Rufus</a></li>
-        </ul>
-    </div>
-    <div id="molly-page" class="page-container">
-       <img src="images/molly.jpg" width="235" height="200" alt="Molly" />
-    </div>
-    <div id="rufus-page" class="page-container">
-        <img src="images/rufus.jpg" width="235" height="200" alt="Rufus" />
-    </div>
+<div class="intro">
+<p>Here are a few examples of ways that you can use Lucid Tabs. Try out the examples and examine the <code>demo.js</code> file and the source for this page.</p>
 </div>
-<pre>$("#cats").tabs();</pre>
 
-<h2>Animation</h2>
-<p>This example adds custom animations for showing and hiding the tabs.</p>
-<div id="fancy-cats" class="tabbed-area lucid-tab-example">
+<div class="example">
+
+<h2>Simple Tabs</h2>
+<p>Let’s start by making working tabs with one line of JavaScript and some simple markup.</p>
+
+<div id="cats" class="demo">
     <div class="tabs">
         <ul>
-            <li><a href="#fancy-molly-page">Molly</a></li>
-            <li><a href="#fancy-rufus-page">Rufus</a></li>
+            <li><a href="#molly-page">Molly</a></li>
+            <li><a href="#rufus-page">Rufus</a></li>
         </ul>
+        <div style="clear: both;"></div>
     </div>
-    <div class="page-container">
-        <div id="fancy-molly-page" class="page">
+    <div class="pages">
+        <div id="molly-page" class="page-container">
            <img src="images/molly.jpg" width="235" height="200" alt="Molly" />
         </div>
-        <div id="fancy-rufus-page" class="page">
+        <div id="rufus-page" class="page-container">
             <img src="images/rufus.jpg" width="235" height="200" alt="Rufus" />
         </div>
+    </div><!-- .pages -->
+</div><!-- #cats -->
+
+<div class="notes">
+<p>This is the most standard approach. By default, the Lucid Tabs plugin will search within the element you call it on for anchors with <code>href</code> values pointing to IDs on the page. These anchors become the tabs, and the elements with the matched IDs become the “pages” that are shown or hidden when the selected tab changes.</p>
+<p>This default setup has the added benefit that users without JavaScript enabled will still have working in-page navigation.</p>
+</div><!-- .notes -->
+
+<div style="clear: both;"></div>
+</div><!-- .example -->
+
+<div class="example">
+
+<h2>Tabs with Animation</h2>
+
+<div id="animated-cats" class="demo">
+    <div class="tabs">
+        <ul>
+            <li><a href="#animated-molly-page">Molly</a></li>
+            <li><a href="#animated-rufus-page">Rufus</a></li>
+        </ul>
+        <div style="clear: both;"></div>
     </div>
-</div>
-<pre>$("#fancy-cats").tabs({
-            
-    // Set the tab at index 1 to be displayed initially.
-    selected: 1,
+    <div class="pages">
+        <div id="animated-molly-page" class="page">
+           <img src="images/molly.jpg" width="235" height="200" alt="Molly" />
+        </div>
+        <div id="animated-rufus-page" class="page">
+            <img src="images/rufus.jpg" width="235" height="200" alt="Rufus" />
+        </div>
+    </div><!-- .pages -->
+</div><!-- #animated-cats -->
 
-    // Animate the transitions.
-    showPage: function (elem) {
-        elem.css({
-            "z-index": 1
-        });
-        elem.fadeIn(1000);
-    },
-    hidePage: function (elem) {
-        elem.css({
-            "z-index": 0
-        });
-        elem.fadeOut(1000);
-    }
-                    
-});</pre>
+<div class="notes">
+<p>In this example, I've added custom animtaions by providing functions for the <code>showPage</code> and <code>hidePage</code> options.</p>
+<p>I've also set the tabset to start with the second tabs selected. This done using the <code>selected</code> option.</p>
+</div><!-- .notes -->
 
-<h2>Definition List</h2>
-<p>You can also use Lucid Tabs to dress up a definiion list. To do this, supply your own functions for <code>locateTabs</code> and <code>locatePages</code>.</p>
-<p>This example also allow having no tabs selected, and even uses this as the default.</p>
-<p>Finally, this example binds some event handlers to add messages when tabs are selected and deselected.</p>
-<dl id="futurama" class="lucid-tab-example">
-<dt id="fry">Philip J. Fry</dt>
+<div style="clear: both;"></div>
+</div><!-- .example -->
+
+<div class="example">
+
+<h2>Accordion</h2>
+<p>You can also use Lucid Tabs for a variety of other tasks such as accordions. Click one of the items to expand the list of “subitems.”</p>
+<dl id="accordion" class="demo accordion">
+<dt>Item 1</dt>
 <dd>
-<p>Fry is a dim-witted, immature, slovenly, yet good-hearted pizza delivery boy who falls into a cryogenic pod, causing it to activate and freeze him just after midnight on January 1, 2000. He re-awakens on New Year's Eve, 2999, and gets a job as a cargo delivery boy at Planet Express, a company owned by his only living relative, Professor Hubert J. Farnsworth. Fry's love for Leela is a recurring theme throughout the series.</p>
+    <ul>
+        <li>Subitem 1A</li>
+        <li>Subitem 1B</li>
+        <li>Subitem 1C</li>
+    </ul>
 </dd>
-<dt id="leela">Turanga Leela</dt>
+<dt>Item 2</dt>
 <dd>
-<p>Leela is the competent, one-eyed captain of the Planet Express Ship.[63] Abandoned as a baby, she grew up in the Cookieville Minimum Security Orphanarium believing herself to be an alien from another planet, but learns that she is actually a mutant from the sewers in the episode "Leela's Homeworld".[65] Prior to becoming the ship's captain, Leela worked as a career assignment officer at the cryogenics lab where she first met Fry. She is Fry's primary love interest. Her name is a reference to the Turangal�la-Symphonie by Olivier Messiaen.[66]</p>
+    <ul>
+        <li>Subitem 2A</li>
+        <li>Subitem 2B</li>
+        <li>Subitem 2C</li>
+    </ul>
 </dd>
-<dt id="bender">Bender Bending Rodr�guez</dt>
+<dt>Item 3</dt>
 <dd>
-<p>Bender is a foul-mouthed, heavy-drinking, cigar-smoking, kleptomaniacal, misanthropic, egocentric, ill-tempered robot manufactured by Mom's Friendly Robot Company. He was originally programmed to bend girders for suicide booths, and is later designated as assistant sales manager and cook, despite lacking a sense of taste. He is Fry's best friend and roommate.</p>
+    <ul>
+        <li>Subitem 3A</li>
+        <li>Subitem 3B</li>
+        <li>Subitem 3C</li>
+    </ul>
 </dd>
-</dl><!-- #futurama -->
-<div id="messages-container">
-<label>Messages: </label>
-<div id="messages"></div>
-</div>
-<pre>$("#futurama").tabs({
-        
-    // Allow all pages to be hidden at once.
-    allowNone: true,
-    
-    // Allow more than one page showing at once.
-    allowMultiple: true,
-    
-    // No initial selection.
-    selected: false, 
+</dl><!-- #accordion -->
 
-    // Tabs will be top-level definition terms.
-    locateTabs: function (elemTabSet) {
-        return elemTabSet.children("dt");
-    },
-    
-    // The DD following a DT will be its correspoding page.
-    locatePages: function (elemTab) {
-        return elemTab.next("dd");
-    } 
-    
-});
+<div class="notes">
+<p>If you take a peak at the source, you’ll notice that the markup for the accordion is a definition list. To get Lucid Tabs to recognize the <code>DT</code> elements as the tabs and the <code>DD</code> elements as the pages, you need to override the default options <code>locateTabs</code> and <code>locatePages</code> with your own functions that return jQuery references to the desired elements.</p>
+</div><!-- .notes -->
 
-// Bind some events for when a tab is selected or deselected.        
-$("#futurama > dt").on("selected.lucidtabs", function () {
-    $("#messages").append($("<p></p>").text("Hello, " + $(this).text() + "!"));
-});
-$("#futurama > dt").on("deselected.lucidtabs", function () {
-    $("#messages").append($("<p></p>").text("Goodbye, " + $(this).text() + "!"));
-});</pre>
+<div style="clear: both;"></div>
+</div><!-- .example -->
+
+<div class="example">
 
 <h2>Multiple Pages</h2>
-<p>The selector you use in <code>locatePages</code> can match multiple elements. Im this example, each button (tab) points to the elements with the same value in the <code>data-type</code> attribute. Using this approach, you could use Lucid Tabs to make a map with landmarks you can toggle on and off.</p>
-<div id="letters" class="lucid-tab-example">
-<button data-type="a">A</button>
-<button data-type="b">B</button>
-<button data-type="c">C</button>
-<span data-type="a">A</span>
-<span data-type="b">B</span>
-<span data-type="c">C</span>
-<span data-type="a">A</span>
-<span data-type="b">B</span>
-<span data-type="c">C</span>
-<span data-type="a">A</span>
-<span data-type="b">B</span>
-<span data-type="c">C</span>
-<span data-type="a">A</span>
-<span data-type="b">B</span>
-<span data-type="c">C</span>
-</div><!-- #letters -->
-<pre>$("#letters").tabs({
-    
-    // Allow all pages to be hidden at once.
-    allowNone: true,
-    
-    // Allow more than one to be shown at once.
-    allowMultiple: true,
-    
-    // Initially show all pages.
-    selected: "*",
-    
-    // Tabs will be buttons with data-type attributes.
-    locateTabs: function (elemTabSet) {
-        return elemTabSet.find("button[data-type]");    
-    },
-    
-    // Pages will be spans with data-type attributes matching the tabs.
-    locatePages: function (elemTab, elemTabSet) {
-        var dt = elemTab.attr("data-type");
-        return elemTabSet.find("span[data-type=\"" + dt + "\"]");                
-    }
-    
-});</pre>
+<p>The selector you use in <code>locatePages</code> can match multiple elements. In this example, each button (tab) has a <code>data-type</code> attribute with a value representing the <code>class</code> of pins to toggle on and off.</p>
+
+<div id="map" class="demo">
+<img src="images/map.svg" width="600" height="375" alt="Map" />
+<div class="legend">
+<strong>Click to toggle:</strong>
+<button data-type="orange">Orange</button>
+<button data-type="green">Green</button>
+<button data-type="blue">Blue</button>
+</div><!-- #legend -->
+<ul>
+<li id="city-anchorage" class="pin orange"><span><label>Anchorage</label></span></li>
+<li id="city-charleston" class="pin blue"><span><label>Charleston</label></span></li>
+<li id="city-cleveland" class="pin orange"><span><label>Cleveland</label></span></li>
+<li id="city-fargo" class="pin green"><span><label>Fargo</label></span></li>
+<li id="city-knoxville" class="pin orange"><span><label>Knoxville</label></span></li>
+<li id="city-miami" class="pin green"><span><label>Miami</label></span></li>
+<li id="city-newyork" class="pin blue"><span><label>New York</label></span></li>
+<li id="city-ogden" class="pin blue"><span><label>Ogden</label></span></li>
+<li id="city-philadelphia" class="pin green"><span><label>Phildalphia</label></span></li>
+<li id="city-quahog" class="pin orange"><span><label>Quahog</label></span></li>
+<li id="city-seattle" class="pin green"><span><label>Seattle</label></span></li>
+</ul>
+</div><!-- #map -->
+
+<div style="clear: both;"></div>
+</div><!-- .example -->
+
 </body>
 </html>
