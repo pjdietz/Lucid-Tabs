@@ -77,7 +77,8 @@
     text-decoration: none;
 }
 
-.pages {
+#cats .pages,
+#animated-cats .pages {
     position: relative;
     width: 235px;
     height: 200px;
@@ -86,8 +87,10 @@
     border-left: 1px solid #ff9c00;
 }
 
-.page {
+#cats .page,
+#animated-cats .page {
     position: absolute;
+    display: none;
     top: 0;
     left: 0;
     z-index: 0;

@@ -125,6 +125,8 @@
          *    - An integer representing the 0-based index of the tab
          *    - An array of integers as 0-based indexes.
          *    - "*" to mean select all tabs.
+         *    - A jQuery selector for a tab.
+         *    - A jQuery object for a tab.
          */
         select: function (tab) {
 
@@ -149,17 +151,17 @@
                 // * Wildcard to select all tabs.
                 this.selectAll();
 
-            } else if (typeof tab === "string") {
-
-                // For strings, try exploding it into an array.
-                this.select(tab.split(","));
-
             } else if ($.isArray(tab)) {
 
                 // For arrays, run select on each member.
                 for (i = 0, u = tab.length; i < u; i += 1) {
                     this.select(tab[i]);
                 }
+
+            } else if (typeof tab === "string") {
+
+                // For strings, try exploding it into an array.
+                this.select($(tab));
 
             } else if (tab instanceof jQuery) {
 
@@ -185,6 +187,8 @@
          *    - An integer representing the 0-based index of the tab
          *    - An array of integers as 0-based indexes.
          *    - "*" to mean select all tabs.
+         *    - A jQuery selector for a tab.
+         *    - A jQuery object for a tab.
          */
         deselect: function (tab) {
 
@@ -216,7 +220,7 @@
             } else if (typeof tab === "string") {
 
                 // For strings, try exploding it into an array.
-                this.deselect(tab.split(","));
+                this.deselect($(tab));
 
             } else if ($.isArray(tab)) {
 
@@ -254,6 +258,11 @@
                     this.toggleTab(tab);
                 }
 
+            } else if (typeof tab === "string") {
+
+                // For strings, try exploding it into an array.
+                this.toggleTab($(tab));
+
             } else if (tab instanceof jQuery) {
 
                 // jQuery selector: try to read the Tab from data.
@@ -267,18 +276,6 @@
             }
 
         }, // toggle()
-
-        toggleTab: function (tab) {
-
-            // A Tab instance that is part of this TabSet.
-            if (tab.selected) {
-                this.deselectTab(tab);
-            } else {
-                this.selectTab(tab);
-            }
-
-        },
-
 
         // ---------------------------------------------------------------------
         // !Private methods
@@ -384,6 +381,20 @@
             }
 
         }, // deselectTab()
+
+        /**
+         * Select or deselect the passed tab to the opposite state.
+         */
+        toggleTab: function (tab) {
+
+            // A Tab instance that is part of this TabSet.
+            if (tab.selected) {
+                this.deselectTab(tab);
+            } else {
+                this.selectTab(tab);
+            }
+
+        }, // toggleTab()
 
         /**
          * Return the Tab instance that is at the given 0-based index.
