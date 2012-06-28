@@ -41,7 +41,7 @@
             i,
             u;
 
-        // Indicate that the tabset is not yet initialized.
+        // Indicate that the TabSet is not yet initialized.
         this.initialized = false;
 
         // Merge the user's options with the defaults.
@@ -53,7 +53,7 @@
         // Create an empty array to hold the Tab instances.
         this.tabs = [];
 
-        // Reference the elements within the tab set that represent tabs.
+        // Reference the elements within the TabSet that represent tabs.
         elemTabs = this.options.locateTabs(elemTabSet);
 
         // Iterate over the tab elements.
@@ -89,7 +89,7 @@
         // Methods exposed to the plugin
 
         /**
-         * Return an arry of indexes of the selected tabs.
+         * Return an array of indexes of the selected tabs.
          *
          * This method is exposed to the plugin:
          *    $(selector).tabs("getSelection");
@@ -118,15 +118,15 @@
         /**
          * Select the tab or tabs indicated by the tab parameter.
          *
-         * The method is exposed to the plugin.
-         * Use $(selector).tabs("select", tabs);
+         * The method is exposed to the plugin:
+         *     $(selector).tabs("select", tabs);
          *
          * The tab parameter may be:
          *    - An integer representing the 0-based index of the tab
-         *    - An array of integers as 0-based indexes.
-         *    - "*" to mean select all tabs.
-         *    - A jQuery selector for a tab.
-         *    - A jQuery object for a tab.
+         *    - An array of integers as 0-based indexes
+         *    - "*" to mean select all tabs
+         *    - A jQuery selector for a tab
+         *    - A jQuery object for a tab
          */
         select: function (tab) {
 
@@ -148,7 +148,7 @@
 
             } else if (tab === "*") {
 
-                // * Wildcard to select all tabs.
+                // * wildcard to select all tabs.
                 this.selectAll();
 
             } else if ($.isArray(tab)) {
@@ -160,7 +160,7 @@
 
             } else if (typeof tab === "string") {
 
-                // For strings, try exploding it into an array.
+                // Treat strings as jQuery selectors.
                 this.select($(tab));
 
             } else if (tab instanceof jQuery) {
@@ -180,15 +180,15 @@
         /**
          * Deselect the tab or tabs indicated by the tab parameter.
          *
-         * The method is exposed to the plugin.
-         * Use $(selector).tabs("select", tabs);
+         * The method is exposed to the plugin:
+         *     $(selector).tabs("select", tabs);
          *
          * The tab parameter may be:
          *    - An integer representing the 0-based index of the tab
-         *    - An array of integers as 0-based indexes.
-         *    - "*" to mean select all tabs.
-         *    - A jQuery selector for a tab.
-         *    - A jQuery object for a tab.
+         *    - An array of integers as 0-based indexes
+         *    - "*" to mean select all tabs
+         *    - A jQuery selector for a tab
+         *    - A jQuery object for a tab
          */
         deselect: function (tab) {
 
@@ -210,17 +210,12 @@
 
             } else if (tab === "*") {
 
-                // * Wildcard to deselect all tabs.
+                // * wildcard to deselect all tabs.
 
                 // Ensure multiple selection is enabled.
                 if (this.options.allowNone) {
                     this.deselectAll();
                 }
-
-            } else if (typeof tab === "string") {
-
-                // For strings, try exploding it into an array.
-                this.deselect($(tab));
 
             } else if ($.isArray(tab)) {
 
@@ -228,6 +223,11 @@
                 for (i = 0, u = tab.length; i < u; i += 1) {
                     this.deselect(tab[i]);
                 }
+
+            } else if (typeof tab === "string") {
+
+                // Treat strings as jQuery selectors.
+                this.deselect($(tab));
 
             } else if (tab instanceof jQuery) {
 
@@ -241,7 +241,11 @@
         /**
          * Switch the state of the given tab.
          *
-         * @param mixed tab  Tab instance or 0-based index of the tab to toggle
+         * The tab parameter may be:
+         *    - An integer representing the 0-based index of the tab
+         *    - An array of integers as 0-based indexes
+         *    - A jQuery selector for a tab
+         *    - A jQuery object for a tab
          */
         toggle: function (tab) {
 
@@ -354,7 +358,7 @@
             // Ensure the tab is selected.
             if (this.tabs[index].selected) {
 
-                // Ensure the tab set either allows no selection or that there
+                // Ensure the TabSet either allows no selection or that there
                 // is at least one other tab selected.
                 if (this.options.allowNone || this.getSelection().length > 1) {
                     this.tabs[index].deselect();
@@ -449,7 +453,7 @@
 
     /**
      * A Tab store references to the TabSet to which is belongs and the Page
-     * that it points to. A Tab is essentially a button that is linked to
+     * to which it points. A Tab is essentially a button that is linked to
      * another element (or multiple elements) to determine visiblity.
      */
     Tab = function (elemTab, elemPage, tabSet) {
@@ -576,6 +580,8 @@
 
     }; // Page.prototype
 
+
+
     // -------------------------------------------------------------------------
     // !Extend jQuery
 
@@ -601,6 +607,7 @@
 
                     tabObj = new TabSet($(this), options);
                     $(this).data("TabSet", tabObj);
+
                 }
 
                 switch (method) {
@@ -641,30 +648,30 @@
 
     $.fn.tabs.defaults = {
 
-        // Allow all tabs to be deselected.
+        // Allow all tabs to be deselected
         allowNone: false,
 
-        // All more than one tab to be selected.
+        // All more than one tab to be selected
         allowMultiple: false,
 
         // Name of the CSS class to add to tab anchors when selected
         cssSelected: "selected",
 
-        // Value for the initial selection.
+        // Value for the initial selection
         selected: 0,
 
-        // Function for locating the tabs (buttons) in the tab set.
+        // Function for locating the tabs (buttons) in the tab set
         locateTabs: function (elemTabSet) {
 
-            // Find any anchors contained by this elements that link to IDs.
+            // Find any anchors contained by this elements that link to IDs
             return elemTabSet.find("a[href^=#]");
 
         },
 
-        // Function for locating the page a tab button points to.
+        // Function for locating the page a tab button points to
         locatePages: function (elemTab) {
 
-            // Return the element with a selector matched ref of the page.
+            // Return the element with a selector matched ref of the page
             return $(elemTab.attr("href"));
 
         },
