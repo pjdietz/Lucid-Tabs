@@ -2,12 +2,11 @@
  * Lucid Tabs
  * Easy tabs with minimal markup.
  *
- * Copyright (c) 2012 PJ Dietz
- * Version: 2.0.0
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/mit-license.php
- *
+ * @preserve Version: 2.0.1
+ * Copyright (c) 2013 PJ Dietz
  * http://pjdietz.com/jquery-plugins/lucid-tabs/
+ *
+ * @license MIT http://www.opensource.org/licenses/mit-license.php
  */
 
 /*global jQuery */
@@ -84,7 +83,7 @@
     TabSet.prototype = {
 
         // ---------------------------------------------------------------------
-        // !Public methods
+        // Public methods
         //
         // Methods exposed to the plugin
 
@@ -282,7 +281,7 @@
         }, // toggle()
 
         // ---------------------------------------------------------------------
-        // !Private methods
+        // Private methods
 
         /**
          * Select all tabs. Only works if the tab set allows multiple selection.
@@ -446,7 +445,6 @@
     }; // TabSet.prototype
 
 
-
     /////////
     // Tab //
     /////////
@@ -530,7 +528,7 @@
         var tab;
 
         // Find the Tab instance for the element.
-        tab = $(event.target).data("Tab");
+        tab = $(this).data("Tab");
 
         // Toggle the Tab.
         tab.tabSet.toggle(tab);
@@ -538,7 +536,6 @@
         return false;
 
     }; // handleClick()
-
 
 
     //////////
@@ -581,9 +578,8 @@
     }; // Page.prototype
 
 
-
     // -------------------------------------------------------------------------
-    // !Extend jQuery
+    // Extend jQuery
 
     $.fn.extend({
 
@@ -600,14 +596,9 @@
 
                 // If no TabSet exists, create one with the first parameter
                 // used as the options.
-                if (typeof tabObj === "undefined") {
-
-                    options = method;
-                    method = "create";
-
-                    tabObj = new TabSet($(this), options);
+                if (tabObj === undefined) {
+                    tabObj = new TabSet($(this), method);
                     $(this).data("TabSet", tabObj);
-
                 }
 
                 switch (method) {
@@ -633,7 +624,7 @@
 
             }); // this.each()
 
-            if (typeof getter !== "undefined") {
+            if (getter !== undefined) {
                 return getter;
             }
 
